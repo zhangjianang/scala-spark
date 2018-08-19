@@ -10,10 +10,11 @@ object WordCount {
   
   def main(args: Array[String]) {
     val conf = new SparkConf()
+        .setMaster("local[*]")
         .setAppName("WordCount");
     val sc = new SparkContext(conf)
   
-    val lines = sc.textFile("hdfs://spark1:9000/spark.txt", 1); 
+    val lines = sc.textFile("file:///f://ang.log", 1);
     val words = lines.flatMap { line => line.split(" ") }   
     val pairs = words.map { word => (word, 1) }   
     val wordCounts = pairs.reduceByKey { _ + _ }
