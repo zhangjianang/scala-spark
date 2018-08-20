@@ -16,7 +16,7 @@ object LineCount {
         .setMaster("local")
     val sc = new SparkContext(conf);
   
-    val lines = sc.textFile("C://Users//Administrator//Desktop//hello.txt", 1)
+    val lines = sc.textFile("file:///C://Users//Administrator//Desktop//gs.txt", 1)
     val pairs = lines.map { line => (line, 1) }  
     val lineCounts = pairs.reduceByKey { _ + _}  
     
